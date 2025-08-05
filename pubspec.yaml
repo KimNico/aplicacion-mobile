@@ -1,0 +1,72 @@
+name: mobile_app
+description: A Flutter mobile app with Clean Architecture
+publish_to: 'none'
+
+# =============================================================================
+# IMPORTANTE: Para generar los archivos .g.dart necesarios para @JsonSerializable
+# ejecuta el siguiente comando:
+# flutter pub run build_runner build --delete-conflicting-outputs
+# =============================================================================
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_bloc: ^8.1.3
+  
+  # Async
+  dartz: ^0.10.1
+  
+  # Dependency Injection
+  get_it: ^7.6.4
+  
+  # HTTP Client
+  dio: ^5.3.2
+  
+  # JSON Serialization
+  json_annotation: ^4.8.1
+  
+  # Local Storage
+  shared_preferences: ^2.2.2
+  
+  # Network Info
+  connectivity_plus: ^4.0.2
+  
+  # UI Components
+  cupertino_icons: ^1.0.2
+  
+  # Navigation
+  go_router: ^12.1.3
+  
+  # Image Loading
+  cached_network_image: ^3.3.0
+  
+  # UI Components
+  flutter_staggered_grid_view: ^0.7.0
+  
+  # URL Launcher
+  url_launcher: ^6.2.1
+  
+  # Utilities
+  equatable: ^2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  
+  # Mocking
+  mockito: ^5.4.4
+  build_runner: ^2.4.7
+  
+  # JSON Serialization
+  json_serializable: ^6.7.1
+
+flutter:
+  uses-material-design: true 
