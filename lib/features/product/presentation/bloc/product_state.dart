@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import '../../data/models/product_model.dart';
 import '../../data/models/category_model.dart';
 import '../../data/models/store_model.dart';
+import 'product_event.dart' as event;
 
 abstract class ProductState extends Equatable {
   const ProductState();
@@ -167,7 +168,7 @@ class SearchError extends ProductState {
 
 // Estados para contacto
 class ContactLoading extends ProductState {
-  final ContactMethod method;
+  final event.ContactMethod method;
 
   const ContactLoading(this.method);
 
@@ -176,7 +177,7 @@ class ContactLoading extends ProductState {
 }
 
 class ContactSuccess extends ProductState {
-  final ContactMethod method;
+  final event.ContactMethod method;
   final String message;
 
   const ContactSuccess(this.method, this.message);
@@ -186,7 +187,7 @@ class ContactSuccess extends ProductState {
 }
 
 class ContactError extends ProductState {
-  final ContactMethod method;
+  final event.ContactMethod method;
   final String message;
 
   const ContactError(this.method, this.message);
@@ -259,11 +260,3 @@ class Refreshing extends ProductState {
   @override
   List<Object?> get props => [type];
 }
-
-// Enum para métodos de contacto (duplicado para evitar import circular)
-enum ContactMethod {
-  phone,
-  whatsapp,
-  email,
-  website,
-} 

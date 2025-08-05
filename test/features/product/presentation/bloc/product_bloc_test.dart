@@ -9,6 +9,7 @@ import '../../../../lib/features/product/presentation/bloc/product_state.dart';
 import '../../../../lib/features/product/data/models/category_model.dart';
 import '../../../../lib/features/product/data/models/product_model.dart';
 import '../../../../lib/features/product/data/models/store_model.dart';
+import '../../../../lib/features/product/domain/entities/store.dart' as store_entity;
 import '../../../../lib/core/error/failures.dart';
 import '../../../mocks/mock_product_repository.dart';
 
@@ -141,7 +142,7 @@ void main() {
       latitude: 0.0,
       longitude: 0.0,
       images: [],
-      hours: StoreHours(schedules: {}, specialHours: '', isOpenNow: true),
+      hours: store_entity.StoreHours(schedules: {}, specialHours: '', isOpenNow: true),
       isActive: true,
       categories: [],
       createdAt: DateTime.now(),
@@ -152,9 +153,7 @@ void main() {
       when(mockRepository.getStoreById('store_1'))
           .thenAnswer((_) async => Right(store));
 
-      // Simular éxito en _makePhoneCall
       final blocWithPhoneCall = ProductBlocWithApi(productRepository: mockRepository);
-      blocWithPhoneCall._makePhoneCall = (_) async => true;
 
       expectLater(
         blocWithPhoneCall.stream,
