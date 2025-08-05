@@ -1,4 +1,3 @@
-import 'dart:convert';
 import '../../domain/entities/category.dart';
 
 class CategoryModel extends Category {
@@ -7,10 +6,12 @@ class CategoryModel extends Category {
     required super.name,
     required super.description,
     super.parentId,
-    required super.icon,
+    super.icon,
     super.productCount = 0,
     super.isActive = true,
     super.sortOrder = 0,
+    super.createdAt,
+    super.updatedAt,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
@@ -19,10 +20,16 @@ class CategoryModel extends Category {
       name: json['name'] as String,
       description: json['description'] as String,
       parentId: json['parent_id'] as String?,
-      icon: json['icon'] as String,
+      icon: json['icon'] as String?,
       productCount: json['product_count'] as int? ?? 0,
       isActive: json['is_active'] as bool? ?? true,
       sortOrder: json['sort_order'] as int? ?? 0,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'] as String)
+          : null,
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'] as String)
+          : null,
     );
   }
 
@@ -36,6 +43,8 @@ class CategoryModel extends Category {
       productCount: category.productCount,
       isActive: category.isActive,
       sortOrder: category.sortOrder,
+      createdAt: category.createdAt,
+      updatedAt: category.updatedAt,
     );
   }
 
@@ -49,6 +58,8 @@ class CategoryModel extends Category {
       'product_count': productCount,
       'is_active': isActive,
       'sort_order': sortOrder,
+      'created_at': createdAt?.toIso8601String(),
+      'updated_at': updatedAt?.toIso8601String(),
     };
   }
 
@@ -61,6 +72,8 @@ class CategoryModel extends Category {
     int? productCount,
     bool? isActive,
     int? sortOrder,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return CategoryModel(
       id: id ?? this.id,
@@ -71,6 +84,8 @@ class CategoryModel extends Category {
       productCount: productCount ?? this.productCount,
       isActive: isActive ?? this.isActive,
       sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
